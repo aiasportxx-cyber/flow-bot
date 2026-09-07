@@ -20,14 +20,12 @@ if st.button("Generate Scenes"):
     
     with st.spinner("Downloading audio and writing scenes... this takes a minute!"):
         try:
-            # Download Native Audio (Bypasses the need for FFmpeg)
             # Download Native Audio (Disguised as Android to bypass 403 block)
             ydl_opts = {
                 'format': 'm4a/bestaudio/best',
                 'outtmpl': 'audio.%(ext)s',
                 'quiet': True,
                 'extractor_args': {'youtube': {'player_client': ['android']}}
-            }
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([input_url])
