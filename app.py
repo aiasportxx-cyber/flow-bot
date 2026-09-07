@@ -77,13 +77,13 @@ if page == "🎬 Flow Prompt Bot":
                     audio_path = glob.glob("audio.*")[0]
                     uploaded_file = client.files.upload(file=audio_path)
                     response = client.models.generate_content(
-                        model='gemini-2.5-flash',
+                        model='gemini-3.6-flash',
                         contents=[uploaded_file, prompt]
                     )
                     os.remove(audio_path)
                 else:
                     response = client.models.generate_content(
-                        model='gemini-2.5-flash',
+                        model='gemini-3.6-flash',
                         contents=[prompt, "\n\nContent to process:\n" + user_data]
                     )
                     
@@ -108,7 +108,7 @@ elif page == "🖼️ Thumbnail Maker":
             
         with st.spinner("Brainstorming..."):
             prompt = f"Create 3 highly visual, click-worthy Midjourney image prompts for a YouTube thumbnail about: {video_topic}. Describe the core subject, background, and lighting."
-            response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+            response = client.models.generate_content(model='gemini-3.6-flash', contents=prompt)
             st.write(response.text)
 
 # ==========================================
@@ -127,5 +127,5 @@ elif page == "👤 Character Forge":
             
         with st.spinner("Designing..."):
             prompt = f"Expand this brief description into a comprehensive AI image generation prompt for a character turnaround sheet (front, side, and back profile). Description: {char_desc}"
-            response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+            response = client.models.generate_content(model='gemini-3.6-flash', contents=prompt)
             st.write(response.text)
